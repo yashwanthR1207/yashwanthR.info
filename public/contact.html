@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yashwanth R | Contact</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .info-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .info-card a {
+            font-size: 1.2rem;
+            word-break: break-all;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Yashwanth R.</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>> _Initialize_Connection</h2>
+        <p style="color: var(--text-secondary);">Let's collaborate on the next big hardware/software integration.</p>
+
+        <div class="contact-layout">
+            <div class="contact-info">
+                <div class="bp-card info-card">
+                    <strong style="color: var(--accent-color); display: flex; align-items: center; gap: 0.5rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        [ EMAIL ]
+                    </strong>
+                    <a href="mailto:yashwanth.1207.r@gmail.com">yashwanth.1207.r@gmail.com</a>
+                </div>
+                <div class="bp-card info-card">
+                    <strong style="color: var(--accent-color); display: flex; align-items: center; gap: 0.5rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        [ LINKEDIN ]
+                    </strong>
+                    <a href="https://www.linkedin.com/in/yashwanth-r-7855a7395" target="_blank">yashwanth-r-7855a7395</a>
+                </div>
+                <div class="bp-card info-card">
+                    <strong style="color: var(--accent-color); display: flex; align-items: center; gap: 0.5rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        [ GITHUB ]
+                    </strong>
+                    <a href="https://github.com/yashwanthR1207" target="_blank">github.com/yashwanthR1207</a>
+                </div>
+            </div>
+
+            <div class="bp-card">
+                <form class="contact-form" action="#" method="POST" onsubmit="event.preventDefault(); alert('Message transmission sequence initiated! (Form submission not hooked up yet)');">
+                    <div class="form-group">
+                        <label for="name">ID / Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your designation">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Comm Link / Email</label>
+                        <input type="email" id="email" name="email" required placeholder="name@domain.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Data Payload / Message</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Enter message payload..."></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="margin-top: 1rem;">Transmit Signal</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Yashwanth R. | Designed as a Blueprint.</p>
+    </footer>
+    <script src="js/script.js"></script>
+</body>
+</html>
