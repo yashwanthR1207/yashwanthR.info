@@ -109,11 +109,12 @@ if (sysInit && sysHello && sysName) {
                 // Step 3: Type Hello
                 typeWriter(sysHello, helloText, 50, () => {
                     
-                    // Step 4: Scramble Name
+                    // Step 4: Type Name instead of Scramble
                     setTimeout(() => {
+                        sysName.style.opacity = 1;
                         const finalHtml = `YASHWANTH <span style="color: var(--accent-color)">R.</span>`;
-                        scrambleText(sysName, finalHtml, nameText, 30, () => {
-                            
+                        typeWriter(sysName, nameText, 50, () => {
+                            sysName.innerHTML = finalHtml;
                             // Step 5: Fade in everything else
                             sysFades.forEach((el, index) => {
                                 setTimeout(() => {
@@ -123,7 +124,7 @@ if (sysInit && sysHello && sysName) {
                             });
                             
                         });
-                    }, 300); // brief pause before name scramble
+                    }, 300); // brief pause before name typing
                 });
             }, 2000); // 2 second delay
         });
