@@ -4,7 +4,284 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yashwanth R | Portfolio</title>
+    <meta name="description" content="Yashwanth R — Electrical & Electronics Engineer, IoT & Embedded Systems Enthusiast. Building embedded systems and smart IoT solutions.">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ============ HOME PAGE HERO OVERRIDES ============ */
+        .hero-redesign {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 85vh;
+            padding: 0;
+            position: relative;
+        }
+
+        /* Status line */
+        .hero-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ade80;
+            box-shadow: 0 0 6px #4ade80, 0 0 14px rgba(74,222,128,0.3);
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 6px #4ade80, 0 0 14px rgba(74,222,128,0.3); }
+            50% { opacity: 0.6; box-shadow: 0 0 3px #4ade80; }
+        }
+
+        /* Terminal greeting */
+        .hero-greeting {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            min-height: 1.6rem;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .hero-greeting .blink-cursor {
+            animation: blink 0.7s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Name */
+        .hero-name {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            line-height: 1.05;
+            margin-bottom: 0.5rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .hero-name .accent {
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* Divider */
+        .hero-divider {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--text-primary), transparent);
+            margin: 1.2rem 0 1.5rem 0;
+            opacity: 0;
+            transform: scaleX(0);
+            transform-origin: left;
+        }
+
+        /* Role tags */
+        .hero-roles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .role-tag {
+            font-size: 0.75rem;
+            padding: 0.35rem 0.8rem;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: rgba(255,255,255,0.02);
+            transition: all 0.3s ease;
+        }
+
+        .role-tag:hover {
+            border-color: var(--text-primary);
+            color: var(--text-primary);
+            background: rgba(255,255,255,0.05);
+        }
+
+        /* Description */
+        .hero-desc {
+            font-size: 1.05rem;
+            max-width: 550px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        /* Action buttons row */
+        .hero-actions-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .hero-actions-row .btn {
+            font-size: 0.8rem;
+            padding: 0.7rem 1.5rem;
+        }
+
+        .btn-primary {
+            background: var(--text-primary) !important;
+            color: var(--bg-color) !important;
+            border-color: var(--text-primary) !important;
+        }
+
+        .btn-primary:hover {
+            background: transparent !important;
+            color: var(--text-primary) !important;
+            box-shadow: 0 0 20px rgba(255,255,255,0.15);
+        }
+
+        /* Grid coordinates (decorative) */
+        .hero-coords {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: flex-end;
+            opacity: 0;
+        }
+
+        .coord-item {
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.12);
+            letter-spacing: 3px;
+            writing-mode: horizontal-tb;
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Scroll indicator */
+        .scroll-down {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: scrollBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* Stats bar */
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid var(--border-color);
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* Animations */
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scale-in {
+            animation: scaleIn 0.6s ease forwards;
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scaleX(0);
+            }
+            to {
+                opacity: 1;
+                transform: scaleX(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-name {
+                font-size: 2.5rem;
+            }
+
+            .hero-coords {
+                display: none;
+            }
+
+            .hero-stats {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+            }
+
+            .hero-actions-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -18,21 +295,73 @@
     </nav>
 
     <main>
-        <section class="hero">
-            <div class="greeting" style="font-family: monospace; min-height: 24px;">
-                <span id="sys-init"></span>
-                <span id="sys-hello" style="margin-left: 8px;"></span>
+        <section class="hero-redesign" id="hero">
+
+            <!-- Terminal greeting -->
+            <div class="hero-greeting" id="hero-greeting"></div>
+
+            <!-- Name -->
+            <h1 class="hero-name" id="hero-name">
+                Yashwanth<br><span class="accent">R.</span>
+            </h1>
+
+            <!-- Divider -->
+            <div class="hero-divider" id="hero-divider"></div>
+
+            <!-- Role tags -->
+            <div class="hero-roles" id="hero-roles">
+                <span class="role-tag">Electrical & Electronics</span>
+                <span class="role-tag">Embedded Systems</span>
+                <span class="role-tag">IoT</span>
+                <span class="role-tag">Robotics</span>
+                <span class="role-tag">PCB Design</span>
             </div>
-            <h1 id="sys-name" style="opacity: 0; margin: 10px 0;">YASHWANTH <span style="color: var(--accent-color)">R.</span></h1>
-            <div class="role sys-fade" style="opacity: 0;">Electrical & Electronics Engineer <br> IoT & Embedded Systems Enthusiast</div>
-            <p class="sys-fade" style="opacity: 0;">
-                Building embedded systems and smart IoT solutions with bold design and real-world impact. Currently pursuing my B.E. at VVCE, Mysuru.
+
+            <!-- Description -->
+            <p class="hero-desc" id="hero-desc">
+                Building embedded systems and smart IoT solutions with bold design and real-world impact. Currently pursuing B.E. in EEE at VVCE, Mysuru.
             </p>
-            <div class="hero-actions sys-fade" style="opacity: 0;">
-                <a href="projects.html" class="btn">View Blueprint -> Projects</a>
-                <a href="contact.html" class="btn" style="margin-left: 1rem;">Initialize Contact</a>
-                <a href="#" class="btn" style="margin-left: 1rem;" download>Download Resume (.doc)</a>
+
+            <!-- Action buttons -->
+            <div class="hero-actions-row" id="hero-actions">
+                <a href="projects.html" class="btn btn-primary">View Projects →</a>
+                <a href="contact.html" class="btn">Get In Touch</a>
+                <a href="resume.pdf" class="btn" target="_blank" download>Resume ↓</a>
             </div>
+
+            <!-- Stats -->
+            <div class="hero-stats" id="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-value" id="stat-projects">0</span>
+                    <span class="stat-label">Projects Built</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="stat-certs">0</span>
+                    <span class="stat-label">Certificates</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="stat-tech">0</span>
+                    <span class="stat-label">Technologies</span>
+                </div>
+            </div>
+
+            <!-- Decorative coordinates -->
+            <div class="hero-coords" id="hero-coords">
+                <span class="coord-item">12.30°N</span>
+                <span class="coord-item">76.64°E</span>
+                <span class="coord-item">MYSURU</span>
+                <span class="coord-item">—</span>
+                <span class="coord-item">2026</span>
+            </div>
+
+            <!-- Scroll indicator -->
+            <div class="scroll-down" id="scroll-indicator">
+                <span>Scroll</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+
         </section>
     </main>
 
