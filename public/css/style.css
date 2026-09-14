@@ -704,3 +704,85 @@ textarea,
   letter-spacing: 1px;
   margin: 0;
 }
+/* ============================================
+   SINGLE PAGE LAYOUT & TYPOGRAPHY ENHANCEMENTS
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* Offset for fixed nav */
+}
+
+.page-section {
+  min-height: 80vh;
+  padding: 6rem 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.page-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  letter-spacing: 4px;
+  margin-bottom: 3rem;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.section-title span {
+  color: var(--text-secondary);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.5em;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* Scroll to Top Button */
+.scroll-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  background: var(--bg-color);
+  border: 2px solid var(--text-primary);
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%; /* Modern circle */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 1000;
+  cursor: none; /* Custom cursor override */
+}
+
+.scroll-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+  background: var(--text-primary);
+  color: var(--bg-color);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(255,255,255,0.1);
+}
+
+/* Enhancing existing buttons */
+.btn {
+  border-radius: 4px;
+}
+

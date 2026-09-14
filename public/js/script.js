@@ -253,3 +253,70 @@ if (sysInit && sysHello && sysName) {
         });
     }, 500);
 }
+
+
+// ============================================
+// SINGLE PAGE SCROLL & ANIMATION LOGIC
+// ============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. Intersection Observer for fading in sections
+    const sections = document.querySelectorAll('.page-section');
+    
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                // Optional: stop observing once it's visible if we only want it to animate once
+                // observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        root: null,
+        threshold: 0.15, // Trigger when 15% of the section is visible
+        rootMargin: "-50px 0px"
+    });
+
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
+
+    // 2. Scroll Spy for Navigation Links
+    const navLinks = document.querySelectorAll('.nav-links a');
+    
+    window.addEventListener('scroll', () => {
+        let current = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= (sectionTop - 200)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // 3. Scroll to Top Button
+    const scrollTopBtn = document.getElementById('scroll-top-btn');
+    if (scrollTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+        
+        // Ensure cursor interacts properly with the new button
+        scrollTopBtn.addEventListener('mouseenter', () => cursor && cursor.classList.add('hover'));
+        scrollTopBtn.addEventListener('mouseleave', () => cursor && cursor.classList.remove('hover'));
+    }
+});
