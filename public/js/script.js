@@ -337,21 +337,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 4. Hamburger Mobile Menu Toggle
     const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
+    const navLinksContainer = document.getElementById('nav-links');
 
-    if (hamburger && navLinks) {
+    if (hamburger && navLinksContainer) {
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
-            navLinks.classList.toggle('mobile-open');
+            navLinksContainer.classList.toggle('mobile-open');
             // Prevent body scroll when menu is open
-            document.body.style.overflow = navLinks.classList.contains('mobile-open') ? 'hidden' : '';
+            document.body.style.overflow = navLinksContainer.classList.contains('mobile-open') ? 'hidden' : '';
         });
 
         // Close menu when a nav link is clicked
-        navLinks.querySelectorAll('a').forEach(link => {
+        navLinksContainer.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
-                navLinks.classList.remove('mobile-open');
+                navLinksContainer.classList.remove('mobile-open');
                 document.body.style.overflow = '';
             });
         });
