@@ -536,9 +536,9 @@ textarea,
 
 .id-card.black-edition {
   position: relative;
-  width: 280px;
+  width: 320px;
   height: auto;
-  min-height: 420px;
+  min-height: 480px;
   background: linear-gradient(135deg, #222 0%, #0a0a0a 100%);
   border-radius: 16px;
   box-shadow: 
