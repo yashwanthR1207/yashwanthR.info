@@ -196,6 +196,14 @@ if (heroGreeting && heroName) {
             scrollIndicator.style.transition = 'opacity 1s ease';
             scrollIndicator.style.opacity = '0.5';
         }
+        
+        // Step 9: Hero image / ID card
+        const heroImg = document.getElementById('hero-image');
+        if (heroImg) {
+            heroImg.style.transition = 'opacity 1s ease, transform 1s cubic-bezier(0.25, 0.8, 0.25, 1)';
+            heroImg.style.opacity = '1';
+            heroImg.style.transform = 'translateY(0)';
+        }
     };
 
     runHeroAnimation();

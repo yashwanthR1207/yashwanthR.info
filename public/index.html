@@ -11,14 +11,30 @@
         /* ============ HOME PAGE HERO OVERRIDES ============ */
         .hero-redesign {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start; /* Perfect left alignment */
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
             text-align: left;
             min-height: 85vh;
             padding: 0;
             position: relative;
-            max-width: 800px; /* Constrain width for perfect readability */
+            max-width: 100%; /* Expand to fit both columns */
+            gap: 4rem;
+        }
+        .hero-content {
+            flex: 1;
+            max-width: 750px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0; /* Animated in JS */
+            transform: translateY(20px);
         }
 
         /* Status line */
@@ -269,6 +285,14 @@
         /* Responsive */
         @media (max-width: 900px) {
             .hero-coords { display: none; }
+            .hero-redesign {
+                flex-direction: column;
+                justify-content: center;
+                gap: 2rem;
+            }
+            .hero-image {
+                display: none; /* Hide ID card on mobile for cleaner look */
+            }
         }
         @media (max-width: 768px) {
             .hero-name {
@@ -306,6 +330,7 @@
     <main>
         <section class="hero-redesign page-section" id="home">
 
+            <div class="hero-content">
             <!-- Terminal greeting -->
             <div class="hero-greeting" id="hero-greeting"></div>
 
@@ -353,8 +378,41 @@
                     <span class="stat-label">Technologies</span>
                 </div>
             </div>
-
-            <!-- Decorative coordinates -->
+        </div>
+        
+        <div class="hero-image" id="hero-image">
+                <div class="id-card-wrapper" style="flex: 1; min-width: 300px; display: flex; justify-content: center; position: relative;">
+                    <div class="lanyard-strap"></div>
+                    <div class="id-card black-edition">
+                        <div class="lanyard-clip">
+                            <svg viewBox="0 0 40 60" width="40" height="60" style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));">
+                                <!-- Fabric Loop -->
+                                <path d="M8,0 L32,0 L32,15 L8,15 Z" fill="#111" />
+                                <!-- D-Ring -->
+                                <path d="M12,15 C4,15 4,30 20,30 C36,30 36,15 28,15" fill="none" stroke="#b0b0b0" stroke-width="3" />
+                                <!-- Hook base -->
+                                <rect x="16" y="30" width="8" height="12" fill="#999" rx="2" />
+                                <!-- Hook -->
+                                <path d="M20,42 C10,42 12,55 20,58 C25,58 27,55 25,52 C22,53 18,52 18,48 C18,45 20,42 20,42 Z" fill="#b0b0b0" />
+                                <!-- Spring -->
+                                <rect x="20" y="44" width="2" height="10" fill="#666" />
+                            </svg>
+                        </div>
+                        <div class="id-hole"></div>
+                        <div class="id-photo-container">
+                            <img src="https://yashprofile07.vercel.app/avatar_new.png" alt="Yashwanth R" class="id-photo">
+                        </div>
+                        <div class="id-info">
+                            <h3 class="id-name">Yashwanth R</h3>
+                            <p class="id-title">Embedded Engineer</p>
+                            <p class="id-id">ID: 1207-R</p>
+                        </div>
+                        <div class="id-barcode"></div>
+                    </div>
+                </div>
+        </div>
+        
+        <!-- Decorative coordinates -->
             <div class="hero-coords" id="hero-coords">
                 <span class="coord-item">12.30°N</span>
                 <span class="coord-item">76.64°E</span>
@@ -391,35 +449,7 @@
                         Download Resume
                     </a>
                 </div>
-                <div class="id-card-wrapper" style="flex: 1; min-width: 300px; display: flex; justify-content: center; position: relative;">
-                    <div class="lanyard-strap"></div>
-                    <div class="id-card black-edition">
-                        <div class="lanyard-clip">
-                            <svg viewBox="0 0 40 60" width="40" height="60" style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));">
-                                <!-- Fabric Loop -->
-                                <path d="M8,0 L32,0 L32,15 L8,15 Z" fill="#111" />
-                                <!-- D-Ring -->
-                                <path d="M12,15 C4,15 4,30 20,30 C36,30 36,15 28,15" fill="none" stroke="#b0b0b0" stroke-width="3" />
-                                <!-- Hook base -->
-                                <rect x="16" y="30" width="8" height="12" fill="#999" rx="2" />
-                                <!-- Hook -->
-                                <path d="M20,42 C10,42 12,55 20,58 C25,58 27,55 25,52 C22,53 18,52 18,48 C18,45 20,42 20,42 Z" fill="#b0b0b0" />
-                                <!-- Spring -->
-                                <rect x="20" y="44" width="2" height="10" fill="#666" />
-                            </svg>
-                        </div>
-                        <div class="id-hole"></div>
-                        <div class="id-photo-container">
-                            <img src="https://yashprofile07.vercel.app/avatar_new.png" alt="Yashwanth R" class="id-photo">
-                        </div>
-                        <div class="id-info">
-                            <h3 class="id-name">Yashwanth R</h3>
-                            <p class="id-title">Embedded Engineer</p>
-                            <p class="id-id">ID: 1207-R</p>
-                        </div>
-                        <div class="id-barcode"></div>
-                    </div>
-                </div>
+
             </div>
             
         </section>
