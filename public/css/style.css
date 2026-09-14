@@ -259,15 +259,23 @@ main {
   font-weight: bold;
 }
 
-.skill-icon {
+.skill-icon, .animated-logo {
   color: var(--text-secondary);
   transition: all 0.3s ease;
+  animation: floatLogo 3s ease-in-out infinite;
 }
 
-.skill-card:hover .skill-icon {
+@keyframes floatLogo {
+  0% { transform: translateY(0); filter: drop-shadow(0 0 2px rgba(255,255,255,0.1)); }
+  50% { transform: translateY(-5px); filter: drop-shadow(0 5px 10px rgba(255,255,255,0.3)); }
+  100% { transform: translateY(0); filter: drop-shadow(0 0 2px rgba(255,255,255,0.1)); }
+}
+
+.skill-card:hover .skill-icon, .skill-card:hover .animated-logo {
   color: var(--text-primary);
-  transform: scale(1.1);
-  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+  transform: scale(1.15) translateY(-5px);
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
+  animation: none; /* Pause float on hover for stable pop */
 }
 
 /* GitHub Link Hover */
