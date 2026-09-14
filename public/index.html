@@ -17,9 +17,11 @@
             align-items: center;
             text-align: left;
             min-height: 85vh;
-            padding: 0;
+            padding: 0 4%; /* Extreme left and right padding */
             position: relative;
-            max-width: 100%; /* Expand to fit both columns */
+            width: 100vw; /* Break out of 1200px container */
+            left: 50%;
+            transform: translateX(-50%);
             gap: 4rem;
         }
         .hero-content {
@@ -36,6 +38,7 @@
             align-items: center;
             opacity: 0; /* Animated in JS */
             transform-origin: top right; /* Origin for scaling */
+            margin-top: -80px; /* Make ID card a little bit up */
         }
 
         /* Scale hero image on smaller height screens so ID card fits */
