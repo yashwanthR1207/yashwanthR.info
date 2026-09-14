@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yashwanth R | Portfolio</title>
     <meta name="description" content="Yashwanth R — Electrical & Electronics Engineer, IoT & Embedded Systems Enthusiast. Building embedded systems and smart IoT solutions.">
+    <!-- Shery.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" />
     <link rel="stylesheet" href="css/style.css?v=1.1">
     <style>
         
@@ -328,7 +330,7 @@
     </nav>
 
     <main>
-        <section class="hero-redesign page-section" id="home">
+        <section class="hero-redesign page-section" id="home" data-nav="home">
 
             <div class="hero-content">
             <!-- Terminal greeting -->
@@ -433,8 +435,7 @@
     
 
 <!-- About Section -->
-<section id="about" class="page-section">
-<section class="about-section" style="display: flex; flex-direction: column; justify-content: center; padding-top: 2rem;">
+<section id="about" class="page-section" data-nav="about" style="display: flex; flex-direction: column; justify-content: center;">
             <h2 class="section-title"><span>>_</span>ABOUT_ME</h2>
             <div style="display: flex; flex-direction: row; gap: 2rem; align-items: center; flex-wrap: wrap;">
                 <div class="bp-card" style="flex: 1; min-width: 300px;">
@@ -454,14 +455,14 @@
             
         </section>
 
-        <section class="about-section" id="vision-section" style="padding-top: 4rem;">
+        <section class="page-section" id="vision-section" data-nav="about">
             <h2 class="section-title"><span>>_</span>VISION</h2>
             <div class="bp-card" style="font-size: 1.15rem; line-height: 1.8; text-align: center; color: var(--text-primary); border-style: dashed;">
                 <em>"To become a leading technology innovator with strong core engineering knowledge and advanced technical skills, transforming real-world challenges into innovative solutions through embedded systems, hardware development, research, and emerging technologies."</em>
             </div>
         </section>
 
-        <section class="about-section" id="skills-section" style="padding-top: 4rem;">
+        <section class="page-section" id="skills-section" data-nav="about">
             <h2 class="section-title"><span>>_</span>CORE_SKILLS</h2>
             <div class="skills-grid">
                 
@@ -569,7 +570,7 @@
                 transform: translateY(0);
             }
         </style>
-        <section class="about-section" id="certificates-section" style="padding-top: 4rem;">
+        <section class="page-section" id="certificates-section" data-nav="about">
             <h2 class="section-title"><span>>_</span>CERTIFICATES</h2>
             <div class="skills-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem;">
 
@@ -600,11 +601,9 @@
 
             </div>
         </section>
-</section>
-
 
 <!-- Projects Section -->
-<section id="projects" class="page-section">
+<section id="projects" class="page-section" data-nav="projects">
 <h2 class="section-title"><span>>_</span>PROJECT_SCHEMATICS</h2>
         <p style="color: var(--text-secondary); margin-bottom: 2rem;">A showcase of my IoT, Robotics, and Embedded Systems work.</p>
         
@@ -739,7 +738,7 @@
 
 
 <!-- Contact Section -->
-<section id="contact" class="page-section">
+<section id="contact" class="page-section" data-nav="contact">
 <h2 class="section-title"><span>>_</span>INITIALIZE_CONNECTION</h2>
         <p style="color: var(--text-secondary);">Let's collaborate on the next big hardware/software integration.</p>
 
@@ -798,6 +797,14 @@
     <footer>
         <p>&copy; 2026 Yashwanth R. All Rights Reserved. | Designed as a Blueprint.</p>
     </footer>
+
+    <!-- GSAP and Shery.js Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.155.0/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/automat/controlkit.js@master/bin/controlKit.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/sheryjs/dist/Shery.js"></script>
+
     <script src="js/script.js?v=1.1"></script>
 </body>
 </html>
