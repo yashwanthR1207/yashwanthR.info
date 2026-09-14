@@ -118,12 +118,12 @@ if (heroGreeting && heroName) {
             let text1 = 'YASHWANTH';
             let text2 = 'R.';
             let i = 0;
-            nameEl.innerHTML = '';
+            nameEl.innerHTML = '<span class="blink-cursor-square"></span>';
             const interval = setInterval(() => {
                 if (i < text1.length) {
-                    nameEl.innerHTML = text1.substring(0, i + 1) + '<br><span class="accent"></span>';
+                    nameEl.innerHTML = text1.substring(0, i + 1) + '<br><span class="accent"></span><span class="blink-cursor-square"></span>';
                 } else if (i < text1.length + text2.length) {
-                    nameEl.innerHTML = text1 + '<br><span class="accent">' + text2.substring(0, i - text1.length + 1) + '</span>';
+                    nameEl.innerHTML = text1 + '<br><span class="accent">' + text2.substring(0, i - text1.length + 1) + '</span><span class="blink-cursor-square"></span>';
                 } else {
                     clearInterval(interval);
                     resolve();
@@ -264,87 +264,33 @@ if (sysInit && sysHello && sysName) {
 
 
 // ============================================
-// SINGLE PAGE SCROLL & PRO ANIMATIONS (GSAP & Shery)
+// SINGLE PAGE SCROLL & ANIMATION LOGIC
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. Initialize Shery.js Features
-    // Mouse Follower
-    Shery.mouseFollower({
-        skew: true,
-        ease: "cubic-bezier(0.23, 1, 0.320, 1)",
-        duration: 0.5,
-    });
-    
-    // Magnetic Elements (Nav Links, Buttons)
-    Shery.makeMagnet(".nav-links a, .btn, .scroll-to-top" /* Element to target.*/, {
-        ease: "cubic-bezier(0.23, 1, 0.320, 1)",
-        duration: 1,
-    });
-    
-    // Liquid Distortions on Images
-    if (document.querySelectorAll('.id-photo').length > 0) {
-        Shery.imageEffect(".id-photo, .cert-img", {
-            style: 4, // Style 4 is a nice gooey/liquid hover distortion
-            config: {"uColor":{"value":false},"uSpeed":{"value":0.6,"range":[0.1,1],"rangep":[1,10]},"uAmplitude":{"value":1.5,"range":[0,5]},"uFrequency":{"value":3.5,"range":[0,10]},"geoVertex":{"range":[1,64],"value":32},"zindex":{"value":-9996999,"range":[-9999999,9999999]},"aspect":{"value":1},"ignoreShapeAspect":{"value":true},"shapePosition":{"value":{"x":0,"y":0}},"shapeScale":{"value":{"x":0.5,"y":0.5}},"shapeEdgeSoftness":{"value":0,"range":[0,0.5]},"shapeRadius":{"value":0,"range":[0,2]},"currentScroll":{"value":0},"scrollLerp":{"value":0.07},"gooey":{"value":true},"infiniteGooey":{"value":true},"growSize":{"value":4,"range":[1,15]},"durationOut":{"value":1,"range":[0.1,5]},"durationIn":{"value":1.5,"range":[0.1,5]},"displaceAmount":{"value":0.5},"masker":{"value":false},"maskVal":{"value":1,"range":[1,5]},"scrollType":{"value":0},"geoVertex":{"range":[1,64],"value":1},"noEffectGooey":{"value":true},"onMouse":{"value":1},"noise_speed":{"value":0.2,"range":[0,10]},"metaball":{"value":0.2,"range":[0,2],"_gsap":{"id":3}},"discard_threshold":{"value":0.5,"range":[0,1]},"antialias_threshold":{"value":0,"range":[0,0.1]},"noise_height":{"value":0.5,"range":[0,2]},"noise_scale":{"value":10,"range":[0,100]}},
-            preset: "./presets/wigglewobble.json"
-        });
-    }
-
-    // 2. GSAP ScrollTrigger Animations for Page Sections
-    gsap.registerPlugin(ScrollTrigger);
-
+    // 1. Intersection Observer for fading in sections
     const sections = document.querySelectorAll('.page-section');
-    sections.forEach(section => {
-        // Find elements inside the section we want to animate
-        const heading = section.querySelector('.section-title');
-        const cards = section.querySelectorAll('.bp-card');
-        const texts = section.querySelectorAll('p');
-
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: section,
-                start: "top 75%", // triggers when top of section hits 75% of viewport
-                end: "bottom 25%",
-                toggleActions: "play none none reverse"
+    
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                // Optional: stop observing once it's visible if we only want it to animate once
+                // observer.unobserve(entry.target);
             }
         });
-
-        // Make section visible (since we have opacity 0 in CSS previously, though we removed it, let's ensure it)
-        gsap.to(section, {opacity: 1, duration: 0.1});
-
-        if (heading) {
-            tl.from(heading, {
-                y: 50,
-                opacity: 0,
-                duration: 0.8,
-                ease: "power3.out"
-            });
-        }
-        
-        if (texts.length > 0) {
-            tl.from(texts, {
-                y: 30,
-                opacity: 0,
-                duration: 0.6,
-                stagger: 0.1,
-                ease: "power2.out"
-            }, "-=0.4");
-        }
-
-        if (cards.length > 0) {
-            tl.from(cards, {
-                y: 50,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.15,
-                ease: "back.out(1.7)"
-            }, "-=0.2");
-        }
+    }, {
+        root: null,
+        threshold: 0.15, // Trigger when 15% of the section is visible
+        rootMargin: "-50px 0px"
     });
 
-    // 3. Scroll Spy for Navigation Links
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
+
+    // 2. Scroll Spy for Navigation Links
     const navLinks = document.querySelectorAll('.nav-links a');
     
     window.addEventListener('scroll', () => {
@@ -352,8 +298,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
             if (pageYOffset >= (sectionTop - 200)) {
-                current = section.getAttribute('data-nav') || section.getAttribute('id');
+                current = section.getAttribute('id');
             }
         });
 

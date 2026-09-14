@@ -710,20 +710,16 @@ textarea,
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 0px; 
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
+  scroll-padding-top: 100px; /* Offset for fixed nav */
 }
 
 .page-section {
-  min-height: 100vh;
-  padding: 6rem 5%;
+  min-height: 80vh;
+  padding: 6rem 0;
   border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .page-section.is-visible {
