@@ -76,10 +76,11 @@
 
         /* Name */
         .hero-name {
-            font-size: clamp(3.5rem, 8vw, 6rem);
-            line-height: 1.05;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(4.5rem, 10vw, 8rem);
+            line-height: 0.95;
             margin-bottom: 0.5rem;
-            letter-spacing: 4px;
+            letter-spacing: 6px;
             text-transform: uppercase;
             opacity: 0;
             transform: translateY(20px);
@@ -89,6 +90,19 @@
         .hero-name .accent {
             color: var(--text-secondary);
             font-weight: 400;
+            font-family: 'Space Mono', monospace; /* Keep Space Mono for the R. if they prefer, or use Bebas. The screenshot seems to use same font for both. Let's use Bebas for both */
+            letter-spacing: 2px;
+        }
+
+        .hero-name .blink-cursor-square {
+            display: inline-block;
+            width: 0.5em;
+            height: 0.5em;
+            border: 4px solid var(--text-secondary);
+            margin-left: 10px;
+            animation: blink 1s step-end infinite;
+            vertical-align: text-bottom;
+            margin-bottom: 0.05em;
         }
 
         /* Divider */

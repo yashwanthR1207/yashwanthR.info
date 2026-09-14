@@ -106,34 +106,30 @@ if (heroGreeting && heroName) {
         await new Promise(r => setTimeout(r, 400));
         await typeWriter(heroGreeting, '> System initialized... Hello, I\'m', 35);
 
-        // Step 2: Reveal name with scramble
+        // Step 2: Reveal name with perfect typing animation
         await new Promise(r => setTimeout(r, 100));
         const nameEl = heroName;
         nameEl.style.transition = 'opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1)';
         nameEl.style.opacity = '1';
         nameEl.style.transform = 'translateY(0)';
 
-        // Scramble effect on name
-        const nameRaw = 'YASHWANTH';
-        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%';
-        let iterations = 0;
-        
+        // Type out the name perfectly to match the aesthetic
         await new Promise(resolve => {
+            let text1 = 'YASHWANTH';
+            let text2 = 'R.';
+            let i = 0;
+            nameEl.innerHTML = '<span class="blink-cursor-square"></span>';
             const interval = setInterval(() => {
-                const scrambled = nameRaw.split('').map((letter, index) => {
-                    if (index < iterations) return nameRaw[index];
-                    return letters[Math.floor(Math.random() * letters.length)];
-                }).join('');
-                
-                nameEl.innerHTML = scrambled + '<br><span class="accent">R.</span>';
-                
-                if (iterations >= nameRaw.length) {
+                if (i < text1.length) {
+                    nameEl.innerHTML = text1.substring(0, i + 1) + '<br><span class="accent"></span><span class="blink-cursor-square"></span>';
+                } else if (i < text1.length + text2.length) {
+                    nameEl.innerHTML = text1 + '<br><span class="accent">' + text2.substring(0, i - text1.length + 1) + '</span><span class="blink-cursor-square"></span>';
+                } else {
                     clearInterval(interval);
-                    nameEl.innerHTML = 'Yashwanth<br><span class="accent">R.</span>';
                     resolve();
                 }
-                iterations += 1 / 3; // Slower scramble
-            }, 30);
+                i++;
+            }, 70); // perfect typing speed
         });
 
         // Step 3: Divider scale in
