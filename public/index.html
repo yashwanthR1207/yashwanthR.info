@@ -303,21 +303,56 @@
             .hero-coords { display: none; }
             .hero-redesign {
                 flex-direction: column;
-                justify-content: center;
+                justify-content: flex-start;
                 gap: 2rem;
+                padding-top: 2rem;
+                height: auto;
+                min-height: auto;
             }
             .hero-image {
-                display: none; /* Hide ID card on mobile for cleaner look */
+                display: flex;
+                width: 100%;
+                justify-content: center;
+                margin-top: 1rem;
+                margin-bottom: 2rem;
+                transform-origin: center top;
+            }
+            .lanyard-strap {
+                display: none;
+            }
+            .scroll-down {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                transform: none;
+                margin-top: 2rem;
+                margin-bottom: 1rem;
+                width: 100%;
+                animation: scrollBounceMobile 2.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+            }
+            @keyframes scrollBounceMobile {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(10px); }
             }
         }
         @media (max-width: 768px) {
             .hero-name {
-                font-size: 2.8rem;
+                font-size: clamp(3rem, 12vw, 4.5rem);
                 margin-left: 0;
             }
+            .role-tag {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.8rem;
+            }
             .hero-stats {
-                gap: 2rem;
+                gap: 1.5rem;
                 flex-wrap: wrap;
+                justify-content: center;
+                text-align: center;
+            }
+            .stat-item {
+                flex: 1 1 40%;
+                align-items: center;
             }
             .hero-actions-row {
                 flex-direction: column;
@@ -401,8 +436,16 @@
             </div>
         </div>
         
-        <div class="hero-image" id="hero-image">
-                <div class="id-card-wrapper" style="flex: 1; min-width: 300px; display: flex; justify-content: center; position: relative;">
+            <!-- Scroll indicator -->
+            <div class="scroll-down" id="scroll-indicator">
+                <span>Scroll</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+            
+            <div class="hero-image" id="hero-image">
+                <div class="id-card-wrapper" style="flex: 1; min-width: 300px; display: flex; justify-content: center; position: relative; transform: scale(0.9);">
                     <div class="lanyard-strap"></div>
                     <div class="id-card black-edition">
                         <div class="lanyard-clip">
@@ -431,23 +474,15 @@
                         <div class="id-barcode"></div>
                     </div>
                 </div>
-        </div>
+            </div>
         
-        <!-- Decorative coordinates -->
+            <!-- Decorative coordinates -->
             <div class="hero-coords" id="hero-coords">
                 <span class="coord-item">12.30°N</span>
                 <span class="coord-item">76.64°E</span>
                 <span class="coord-item">MYSURU</span>
                 <span class="coord-item">—</span>
                 <span class="coord-item">2026</span>
-            </div>
-
-            <!-- Scroll indicator -->
-            <div class="scroll-down" id="scroll-indicator">
-                <span>Scroll</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
             </div>
 
         </section>

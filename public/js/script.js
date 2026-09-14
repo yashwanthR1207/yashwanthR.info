@@ -348,12 +348,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Close menu when a nav link is clicked
-        navLinksContainer.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
+        navLinksContainer.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A' || e.target.closest('a')) {
                 hamburger.classList.remove('active');
                 navLinksContainer.classList.remove('mobile-open');
                 document.body.style.overflow = '';
-            });
+            }
         });
     }
 });
