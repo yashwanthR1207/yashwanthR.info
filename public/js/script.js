@@ -118,12 +118,12 @@ if (heroGreeting && heroName) {
             let text1 = 'YASHWANTH';
             let text2 = 'R.';
             let i = 0;
-            nameEl.innerHTML = '<span class="blink-cursor-square"></span>';
+            nameEl.innerHTML = '';
             const interval = setInterval(() => {
                 if (i < text1.length) {
-                    nameEl.innerHTML = text1.substring(0, i + 1) + '<br><span class="accent"></span><span class="blink-cursor-square"></span>';
+                    nameEl.innerHTML = text1.substring(0, i + 1) + '<br><span class="accent"></span>';
                 } else if (i < text1.length + text2.length) {
-                    nameEl.innerHTML = text1 + '<br><span class="accent">' + text2.substring(0, i - text1.length + 1) + '</span><span class="blink-cursor-square"></span>';
+                    nameEl.innerHTML = text1 + '<br><span class="accent">' + text2.substring(0, i - text1.length + 1) + '</span>';
                 } else {
                     clearInterval(interval);
                     resolve();
@@ -179,7 +179,7 @@ if (heroGreeting && heroName) {
         const statCerts = document.getElementById('stat-certs');
         const statTech = document.getElementById('stat-tech');
         if (statProjects) animateCounter(statProjects, 10, 1500);
-        if (statCerts) setTimeout(() => animateCounter(statCerts, 6, 1200), 200);
+        if (statCerts) setTimeout(() => animateCounter(statCerts, 5, 1200), 200);
         if (statTech) setTimeout(() => animateCounter(statTech, 15, 1400), 400);
 
         // Step 8: Status bar & decorative elements
@@ -200,9 +200,8 @@ if (heroGreeting && heroName) {
         // Step 9: Hero image / ID card
         const heroImg = document.getElementById('hero-image');
         if (heroImg) {
-            heroImg.style.transition = 'opacity 1s ease, transform 1s cubic-bezier(0.25, 0.8, 0.25, 1)';
+            heroImg.style.transition = 'opacity 1s ease';
             heroImg.style.opacity = '1';
-            heroImg.style.transform = 'translateY(0)';
         }
     };
 
