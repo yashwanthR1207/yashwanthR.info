@@ -1,38 +1,44 @@
 // ============================================
-// CUSTOM CURSOR
+// CUSTOM CURSOR (desktop only)
 // ============================================
-const cursor = document.createElement('div');
-cursor.classList.add('custom-cursor');
-document.body.appendChild(cursor);
+const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
-const cursorDot = document.createElement('div');
-cursorDot.classList.add('custom-cursor-dot');
-document.body.appendChild(cursorDot);
+let cursor, cursorDot;
 
-document.addEventListener('mousemove', (e) => {
-    requestAnimationFrame(() => {
-        cursor.style.left = `${e.clientX}px`;
-        cursor.style.top = `${e.clientY}px`;
-        cursorDot.style.left = `${e.clientX}px`;
-        cursorDot.style.top = `${e.clientY}px`;
+if (!isTouchDevice) {
+    cursor = document.createElement('div');
+    cursor.classList.add('custom-cursor');
+    document.body.appendChild(cursor);
+
+    cursorDot = document.createElement('div');
+    cursorDot.classList.add('custom-cursor-dot');
+    document.body.appendChild(cursorDot);
+
+    document.addEventListener('mousemove', (e) => {
+        requestAnimationFrame(() => {
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
+            cursorDot.style.left = `${e.clientX}px`;
+            cursorDot.style.top = `${e.clientY}px`;
+        });
     });
-});
 
-const interactives = document.querySelectorAll('a, button, input, textarea');
-interactives.forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-});
+    const interactives = document.querySelectorAll('a, button, input, textarea');
+    interactives.forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
 
-document.addEventListener('mouseleave', () => {
-    cursor.style.opacity = '0';
-    cursorDot.style.opacity = '0';
-});
+    document.addEventListener('mouseleave', () => {
+        cursor.style.opacity = '0';
+        cursorDot.style.opacity = '0';
+    });
 
-document.addEventListener('mouseenter', () => {
-    cursor.style.opacity = '1';
-    cursorDot.style.opacity = '1';
-});
+    document.addEventListener('mouseenter', () => {
+        cursor.style.opacity = '1';
+        cursorDot.style.opacity = '1';
+    });
+}
 
 
 // ============================================
@@ -323,7 +329,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         // Ensure cursor interacts properly with the new button
-        scrollTopBtn.addEventListener('mouseenter', () => cursor && cursor.classList.add('hover'));
-        scrollTopBtn.addEventListener('mouseleave', () => cursor && cursor.classList.remove('hover'));
+        if (cursor) {
+            scrollTopBtn.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            scrollTopBtn.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        }
+    }
+
+    // 4. Hamburger Mobile Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('mobile-open');
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = navLinks.classList.contains('mobile-open') ? 'hidden' : '';
+        });
+
+        // Close menu when a nav link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('mobile-open');
+                document.body.style.overflow = '';
+            });
+        });
     }
 });
