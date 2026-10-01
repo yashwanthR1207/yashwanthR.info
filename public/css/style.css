@@ -962,3 +962,17 @@ html {
   border-radius: 4px;
 }
 
+/* Contact Info Card Hover Effect (Smokey White Glassmorphism) */
+.info-card {
+  transition: all 0.4s ease;
+}
+
+.info-card:hover, .info-card:active {
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.1) !important;
+}
+
+
