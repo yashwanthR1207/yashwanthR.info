@@ -138,10 +138,11 @@ nav {
 /* Main Container */
 main {
   flex: 1;
-  padding: 4rem 5%;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 2rem 5%;
+  max-width: 100%;
+  margin: 0;
   width: 100%;
+  box-sizing: border-box;
 }
 
 /* Blueprint Card Style */

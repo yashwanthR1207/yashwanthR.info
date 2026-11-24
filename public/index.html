@@ -40,6 +40,7 @@
             opacity: 0; /* Animated in JS */
             transform-origin: top right;
             margin-top: -60px; /* Pull the ID card up slightly */
+            padding-right: 2.5rem;
         }
 
         /* Scale hero image on short desktop screens only (side-by-side view) */
@@ -245,7 +246,7 @@
         /* Grid coordinates (decorative) */
         .hero-coords {
             position: absolute;
-            right: -10%; /* Moved further right to not overlap */
+            right: 1.5rem;
             top: 50%;
             transform: translateY(-50%);
             display: flex;
@@ -253,6 +254,7 @@
             gap: 2.5rem;
             align-items: flex-end;
             opacity: 0;
+            pointer-events: none;
         }
 
         .coord-item {
@@ -347,6 +349,7 @@
                 align-items: center;
                 margin-top: 1rem;
                 margin-bottom: 1.5rem;
+                padding-right: 0 !important;
                 transform: none !important; /* Zero phantom empty space below the card */
                 transform-origin: center top;
             }
