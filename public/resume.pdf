@@ -9,7 +9,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
 endobj
 4 0 obj
-<< /Length 2886 >>
+<< /Length 2864 >>
 stream
 BT
 /F1 22 Tf
@@ -49,7 +49,7 @@ BT
 (Distinguished Team Recognition - HACKTOBER 2026) Tj
 0 -12 Td
 /F2 8.5 Tf
-(Recognized in an immersive hackathon organized by Dept of CSE (AI&ML) & VectorFlow Club, VVCE.) Tj
+(Recognized for outstanding participation in Hacktober 2026 with Team Invictus at VVCE.) Tj
 0 -14 Td
 /F1 9 Tf
 (3rd Place - ELECTROSAPIENS 3.0 (24-Hour Hardware Hackathon)) Tj
@@ -69,34 +69,34 @@ BT
 (FEATURED PROJECTS) Tj
 0 -14 Td
 /F1 9 Tf
-(1. IoT-Based Intelligent Godown Automation and Safety System) Tj
+(1. T2C2 - Team Invictus (Hacktober 2026)) Tj
+0 -12 Td
+/F2 8.5 Tf
+(Hackathon project developed during Hacktober 2026 by Dept of CSE AI&ML and VectorFlow Club.) Tj
+0 -14 Td
+/F1 9 Tf
+(2. IoT-Based Intelligent Godown Automation and Safety System) Tj
 0 -12 Td
 /F2 8.5 Tf
 (Multi-sensor industrial safety architecture for real-time fire, hazardous gas, and environmental prevention.) Tj
 0 -14 Td
 /F1 9 Tf
-(2. Smart Home Automation System using ESP8266) Tj
+(3. Smart Home Automation System using ESP8266) Tj
 0 -12 Td
 /F2 8.5 Tf
 (Connected IoT domestic framework for wireless appliance switching and energy monitoring via Wi-Fi.) Tj
 0 -14 Td
 /F1 9 Tf
-(3. Hazard Node to Base Node Sensor Telemetry) Tj
+(4. Hazard Node to Base Node Sensor Telemetry) Tj
 0 -12 Td
 /F2 8.5 Tf
 (Distributed wireless sensor network streaming telemetry from hazard zones to a base hub.) Tj
 0 -14 Td
 /F1 9 Tf
-(4. Inventory QR Management System & Inventory Stock Control) Tj
+(5. Inventory QR Management System & Stock Control) Tj
 0 -12 Td
 /F2 8.5 Tf
 (Streamlined real-time inventory tracking and check-in system leveraging QR codes and TypeScript.) Tj
-0 -14 Td
-/F1 9 Tf
-(5. AIoT Plant Detection & Smart Agriculture) Tj
-0 -12 Td
-/F2 8.5 Tf
-(Smart agricultural monitor integrating ML models with IoT sensor arrays for crop monitoring.) Tj
 0 -14 Td
 /F1 9 Tf
 (6. Autonomous Robotics: Robo Sumo v1 & Robo Soccer Platforms) Tj
@@ -128,10 +128,10 @@ xref
 0000000058 00000 n 
 0000000115 00000 n 
 0000000251 00000 n 
-0000003189 00000 n 
-0000003264 00000 n 
+0000000326 00000 n 
+0000000401 00000 n 
 trailer
 << /Size 7 /Root 1 0 R >>
 startxref
-3334
+471
 %%EOF
