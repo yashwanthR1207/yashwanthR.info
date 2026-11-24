@@ -42,14 +42,14 @@
             margin-top: -60px; /* Pull the ID card up slightly */
         }
 
-        /* Scale hero image on smaller height screens so ID card fits */
-        @media (max-height: 900px) {
+        /* Scale hero image on short desktop screens only (side-by-side view) */
+        @media (min-width: 901px) and (max-height: 900px) {
             .hero-image { transform: scale(0.9); }
         }
-        @media (max-height: 750px) {
+        @media (min-width: 901px) and (max-height: 750px) {
             .hero-image { transform: scale(0.75); }
         }
-        @media (max-height: 650px) {
+        @media (min-width: 901px) and (max-height: 650px) {
             .hero-image { transform: scale(0.65); }
         }
 
@@ -192,7 +192,7 @@
         .hero-actions-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 1.2rem;
+            gap: 1rem;
             align-items: center;
             opacity: 0;
             transform: translateY(10px);
@@ -200,8 +200,33 @@
 
         .hero-actions-row .btn {
             font-size: 0.85rem;
-            padding: 0.8rem 1.8rem;
-            border-radius: 2px;
+            padding: 0.75rem 1.4rem;
+            border-radius: 3px;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .hero-actions-row .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+        }
+
+        .hero-actions-row .btn:active {
+            transform: translateY(0);
+        }
+
+        .hero-actions-row .btn:focus {
+            outline: none;
+        }
+
+        .hero-actions-row .btn:focus-visible {
+            outline: 2px dashed rgba(255, 255, 255, 0.6);
+            outline-offset: 4px;
         }
 
         .btn-primary {
@@ -213,7 +238,8 @@
         .btn-primary:hover {
             background: transparent !important;
             color: var(--text-primary) !important;
-            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.25) !important;
+            transform: translateY(-2px);
         }
 
         /* Grid coordinates (decorative) */
@@ -304,65 +330,97 @@
             .hero-redesign {
                 flex-direction: column;
                 justify-content: flex-start;
-                gap: 2rem;
-                padding-top: 2rem;
+                gap: 1.5rem;
+                padding-top: 1.5rem;
+                padding-bottom: 2rem !important; /* Fix excessive bottom padding */
                 height: auto;
                 min-height: auto;
+            }
+            .hero-content {
+                max-width: 100%;
+                width: 100%;
             }
             .hero-image {
                 display: flex;
                 width: 100%;
                 justify-content: center;
+                align-items: center;
                 margin-top: 1rem;
-                margin-bottom: 2rem;
+                margin-bottom: 1.5rem;
+                transform: none !important; /* Zero phantom empty space below the card */
                 transform-origin: center top;
             }
+            .id-card-wrapper {
+                min-width: 0 !important;
+                width: 100% !important;
+                padding-top: 15px !important;
+                transform: none !important;
+                animation: none !important; /* Avoid keyframe translateY(-100vh) drop jump */
+            }
+            .id-card.black-edition {
+                width: min(300px, 88vw) !important;
+                min-height: auto !important;
+                padding-bottom: 25px !important;
+                margin: 0 auto;
+            }
             .lanyard-strap {
-                display: none;
+                display: none !important;
             }
             .scroll-down {
-                position: relative;
-                bottom: auto;
-                left: auto;
-                transform: none;
-                margin-top: 2rem;
-                margin-bottom: 1rem;
-                width: 100%;
-                animation: scrollBounceMobile 2.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+                display: none !important; /* Eliminate floating scroll indicator and empty gap on mobile */
             }
-            @keyframes scrollBounceMobile {
-                0%, 100% { transform: translateY(0); }
-                50% { transform: translateY(10px); }
+            .page-section {
+                min-height: auto !important;
+                padding: 3rem 0 !important;
+            }
+            .about-section {
+                padding-top: 1.5rem !important;
+            }
+            .hero-stats {
+                padding-top: 2rem;
+                margin-top: 2rem;
+                gap: 1.5rem;
             }
         }
         @media (max-width: 768px) {
             .hero-name {
-                font-size: clamp(3rem, 12vw, 4.5rem);
+                font-size: clamp(2.8rem, 11vw, 4.2rem);
                 margin-left: 0;
             }
             .role-tag {
                 font-size: 0.7rem;
-                padding: 0.3rem 0.8rem;
+                padding: 0.3rem 0.75rem;
+            }
+            .hero-desc {
+                font-size: 0.95rem;
+                margin-bottom: 1.8rem;
+                line-height: 1.65;
             }
             .hero-stats {
-                gap: 1.5rem;
+                gap: 1.2rem;
                 flex-wrap: wrap;
                 justify-content: center;
                 text-align: center;
+                padding-top: 1.5rem;
+                margin-top: 1.5rem;
             }
             .stat-item {
-                flex: 1 1 40%;
+                flex: 1 1 30%;
                 align-items: center;
+            }
+            .stat-value {
+                font-size: 1.8rem;
             }
             .hero-actions-row {
                 flex-direction: column;
                 align-items: stretch;
                 width: 100%;
-                gap: 1rem;
+                gap: 0.8rem;
             }
             .hero-actions-row .btn {
                 text-align: center;
                 width: 100%;
+                padding: 0.8rem 1rem;
             }
         }
     </style>
@@ -414,9 +472,9 @@
 
             <!-- Action buttons -->
             <div class="hero-actions-row" id="hero-actions">
-                <a href="projects.html" class="btn btn-primary">View Projects →</a>
-                <a href="contact.html" class="btn">Get In Touch</a>
-                <a href="resume.pdf" class="btn" target="_blank" download>Resume ↓</a>
+                <a href="#projects" class="btn btn-primary">View Projects →</a>
+                <a href="#contact" class="btn">Get In Touch</a>
+                <a href="resume.pdf" class="btn" target="_blank" download="Yashwanth_R_Resume.pdf">Resume ↓</a>
             </div>
 
             <!-- Stats -->
@@ -427,7 +485,7 @@
                 </div>
                 <div class="stat-item">
                     <span class="stat-value" id="stat-certs">0</span>
-                    <span class="stat-label">Certificates</span>
+                    <span class="stat-label">Achievements & Certs</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-value" id="stat-tech">0</span>
@@ -436,16 +494,8 @@
             </div>
         </div>
         
-            <!-- Scroll indicator -->
-            <div class="scroll-down" id="scroll-indicator">
-                <span>Scroll</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-            </div>
-            
             <div class="hero-image" id="hero-image">
-                <div class="id-card-wrapper" style="flex: 1; min-width: 300px; display: flex; justify-content: center; position: relative; transform: scale(0.9);">
+                <div class="id-card-wrapper" style="display: flex; justify-content: center; position: relative; width: 100%;">
                     <div class="lanyard-strap"></div>
                     <div class="id-card black-edition">
                         <div class="lanyard-clip">
@@ -475,6 +525,14 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Scroll indicator -->
+            <div class="scroll-down" id="scroll-indicator">
+                <span>Scroll</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
         
             <!-- Decorative coordinates -->
             <div class="hero-coords" id="hero-coords">
@@ -500,7 +558,7 @@
                     <p class="about-text">
                         My experience spans leadership in the Robotics Club and various technical internships where I've applied theoretical knowledge to real-world hardware challenges.
                     </p>
-                    <a href="resume.pdf" target="_blank" class="btn" id="resume-download-btn" style="display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 0.5rem;">
+                    <a href="resume.pdf" target="_blank" download="Yashwanth_R_Resume.pdf" class="btn" id="resume-download-btn" style="display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 0.5rem;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                         Download Resume
                     </a>
@@ -610,55 +668,69 @@
                 bottom: 0;
                 left: 0;
                 width: 100%;
-                padding: 20px 15px 15px 15px;
-                background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.5), transparent);
+                padding: 18px 14px 12px 14px;
+                background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.6) 65%, transparent 100%);
                 color: #fff;
-                font-size: 0.95rem;
-                font-weight: bold;
-                letter-spacing: 2px;
+                font-family: 'Bebas Neue', sans-serif;
+                font-size: 1.25rem;
+                font-weight: 400;
+                letter-spacing: 2.5px;
                 text-transform: uppercase;
-                transform: translateY(100%);
-                transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+                transform: translateY(0);
+                transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), background 0.3s ease;
                 text-align: center;
                 border-bottom: 2px solid var(--text-primary);
+                text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+                z-index: 5;
             }
             .cert-card:hover .cert-title-overlay {
-                transform: translateY(0);
+                background: linear-gradient(to top, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.75) 75%, transparent 100%);
+                color: var(--accent-color);
             }
         </style>
         <section class="about-section" id="certificates-section" style="padding-top: 4rem;">
-            <h2 class="section-title"><span>>_</span>CERTIFICATES</h2>
+            <h2 class="section-title"><span>>_</span>ACHIEVEMENTS_&_CERTIFICATES</h2>
             <div class="skills-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem;">
 
-                <div class="bp-card cert-card">
-                    <img src="images/certificates/cert1.jpg" alt="Certificate 1" class="cert-img">
-                    <div class="cert-title-overlay">Certification #1</div>
-                </div>
+                <a href="images/certificates/cert7.jpg" target="_blank" class="bp-card cert-card" style="text-decoration: none;">
+                    <img src="images/certificates/cert7.jpg" alt="1st Prize in MRIOTHON 3.0 Hackathon" class="cert-img">
+                    <div class="cert-title-overlay">1ST PRIZE — MRIOTHON 3.0</div>
+                </a>
 
-                <div class="bp-card cert-card">
-                    <img src="images/certificates/cert2.jpg" alt="Certificate 2" class="cert-img">
-                    <div class="cert-title-overlay">Certification #2</div>
-                </div>
+                <a href="images/certificates/cert8.jpg" target="_blank" class="bp-card cert-card" style="text-decoration: none;">
+                    <img src="images/certificates/cert8.jpg" alt="Recognition in HACKTOBER 2026 Hackathon" class="cert-img">
+                    <div class="cert-title-overlay">HACKTOBER 2026</div>
+                </a>
 
-                <div class="bp-card cert-card">
-                    <img src="images/certificates/cert3.png" alt="Certificate 3" class="cert-img">
-                    <div class="cert-title-overlay">Certification #3</div>
-                </div>
+                <a href="images/certificates/cert6.png" target="_blank" class="bp-card cert-card" style="text-decoration: none;">
+                    <img src="images/certificates/cert6.png" alt="3rd Place in ELECTROSAPIENS 3.0 Hardware Hackathon" class="cert-img">
+                    <div class="cert-title-overlay">3RD PLACE — ELECTROSAPIENS 3.0</div>
+                </a>
 
-                <div class="bp-card cert-card">
-                    <img src="images/certificates/cert4.png" alt="Certificate 4" class="cert-img">
-                    <div class="cert-title-overlay">Certification #4</div>
-                </div>
+                <a href="images/certificates/cert1.jpg" target="_blank" class="bp-card cert-card" style="text-decoration: none;">
+                    <img src="images/certificates/cert1.jpg" alt="2nd Prize in Build Challenge ESP & IoT Workshop" class="cert-img">
+                    <div class="cert-title-overlay">2ND PRIZE — ESP & IOT CHALLENGE</div>
+                </a>
 
-                <div class="bp-card cert-card">
-                    <img src="images/certificates/cert5.jpg" alt="Certificate 5" class="cert-img">
-                    <div class="cert-title-overlay">Certification #5</div>
-                </div>
+                <a href="images/certificates/cert2.jpg" target="_blank" class="bp-card cert-card" style="text-decoration: none;">
+                    <img src="images/certificates/cert2.jpg" alt="Best Innovation in Connected Intelligence - FusionX 1.0 Hackathon" class="cert-img">
+                    <div class="cert-title-overlay">BEST INNOVATION — FUSIONX 1.0</div>
+                </a>
 
-                <div class="bp-card cert-card">
-                    <img src="images/certificates/cert6.png" alt="Certificate 6" class="cert-img">
-                    <div class="cert-title-overlay">Certification #6</div>
-                </div>
+                <a href="images/certificates/cert5.jpg" target="_blank" class="bp-card cert-card" style="text-decoration: none;">
+                    <img src="images/certificates/cert5.jpg" alt="ISRO Bharatiya Antariksh Hackathon" class="cert-img">
+                    <div class="cert-title-overlay">ISRO — BHARATIYA ANTARIKSH HACKATHON</div>
+                </a>
+
+                <a href="images/certificates/cert3.png" target="_blank" class="bp-card cert-card" style="text-decoration: none;">
+                    <img src="images/certificates/cert3.png" alt="Robo Soccer at QuantumX-26" class="cert-img">
+                    <div class="cert-title-overlay">ROBO SOCCER — QUANTUMX-26</div>
+                </a>
+
+                <a href="images/certificates/cert4.png" target="_blank" class="bp-card cert-card" style="text-decoration: none;">
+                    <img src="images/certificates/cert4.png" alt="Robo Soccer at ROBORIKISHI-26" class="cert-img">
+                    <div class="cert-title-overlay">ROBO SOCCER — ROBORIKISHI-26</div>
+                </a>
 
             </div>
         </section>
@@ -794,6 +866,57 @@
                     <span>C++</span>
                     <span>Arduino Uno</span>
                     <span>Flysky RF</span>
+                </div>
+            </div>
+
+            <!-- Project 7 -->
+            <div class="bp-card animated-card">
+                <div class="project-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <svg class="project-header-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-secondary);"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                    <a href="https://github.com/yashwanthR1207/IoT-Based-Intelligent-Godown-Automation-and-Safety-System" target="_blank" class="github-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                </div>
+                <h3>Intelligent Godown Safety System</h3>
+                <p>Automated warehouse monitoring and multi-sensor safety architecture for real-time fire, gas, and environment hazard prevention.</p>
+                <div class="project-tags">
+                    <span>IoT</span>
+                    <span>Safety Automation</span>
+                    <span>Sensors</span>
+                </div>
+            </div>
+
+            <!-- Project 8 -->
+            <div class="bp-card animated-card">
+                <div class="project-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <svg class="project-header-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-secondary);"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                    <a href="https://github.com/yashwanthR1207/Smart-Home-Automation-System-using-ESP8266" target="_blank" class="github-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                </div>
+                <h3>Smart Home Automation (ESP8266)</h3>
+                <p>Internet-connected domestic automation framework allowing wireless remote relay switching, energy efficiency, and IoT telemetry.</p>
+                <div class="project-tags">
+                    <span>ESP8266</span>
+                    <span>Wi-Fi</span>
+                    <span>IoT</span>
+                </div>
+            </div>
+
+            <!-- Project 9 -->
+            <div class="bp-card animated-card">
+                <div class="project-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <svg class="project-header-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-secondary);"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                    <a href="https://github.com/yashwanthR1207/hazard-node-to-base-node-sensordata" target="_blank" class="github-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                </div>
+                <h3>Hazard Node Sensor Telemetry</h3>
+                <p>Distributed wireless telemetry architecture forwarding mission-critical hazard and environmental data from remote nodes to base hub.</p>
+                <div class="project-tags">
+                    <span>RF Telemetry</span>
+                    <span>Wireless Nodes</span>
+                    <span>C++</span>
                 </div>
             </div>
         </div>

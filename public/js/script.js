@@ -185,7 +185,7 @@ if (heroGreeting && heroName) {
         const statCerts = document.getElementById('stat-certs');
         const statTech = document.getElementById('stat-tech');
         if (statProjects) animateCounter(statProjects, 10, 1500);
-        if (statCerts) setTimeout(() => animateCounter(statCerts, 5, 1200), 200);
+        if (statCerts) setTimeout(() => animateCounter(statCerts, 8, 1200), 200);
         if (statTech) setTimeout(() => animateCounter(statTech, 15, 1400), 400);
 
         // Step 8: Status bar & decorative elements
